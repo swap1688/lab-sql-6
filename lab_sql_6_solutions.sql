@@ -17,5 +17,19 @@ CREATE TABLE `films_2020` (
   CONSTRAINT FOREIGN KEY (`original_language_id`) REFERENCES `language` (`language_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8;
 
+# Add the new films to the database.
+# I have used data_import_wizard to insert data into the new table.
 SELECT *
 FROM films_2020;
+
+# Update information on rental_duration, rental_rate, and replacement_cost.	
+UPDATE films_2020 t1
+JOIN film t2 ON t2.film_id = t1.film_id
+SET
+t1.rental_duration = t2.rental_duration,
+t1.rental_rate = t2.rental_rate,
+t1.replacement_cost = t2.replacement_cost;
+
+SELECT *
+FROM films_2020;
+
